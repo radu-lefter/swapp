@@ -18,22 +18,36 @@ const fs = require('fs');
 //     console.log('Data written to file');
 // }); 
 
-fs.readFile('swadesh2.json', (err, data) => {
+// fs.readFile('swadesh3.json', (err, data) => {
+//     if (err) throw err;
+//     let swadesh = JSON.parse(data);
+   
+//     for (const x of swadesh){
+//         x["speakers"] = null;
+//     }
+
+//     // console.log(languages);
+//     let data2 = JSON.stringify(swadesh, null, 2);
+
+//     fs.writeFile('swadesh4.json', data2, (err) => {
+//     if (err) throw err;
+//     console.log('Data written to file');
+// });
+
+// });
+
+fs.readFile('swadesh4.json', (err, data) => {
     if (err) throw err;
     let swadesh = JSON.parse(data);
    
     for (const x of swadesh){
-        x["family"] = null;
-        x["iso693"] = null;
-        x["description"] = null;
-        x["region"] = null;
-        x["status"] = null;
+        x.words = Object.fromEntries(x.words);
     }
 
     // console.log(languages);
     let data2 = JSON.stringify(swadesh, null, 2);
 
-    fs.writeFile('swadesh3.json', data2, (err) => {
+    fs.writeFile('swadesh5.json', data2, (err) => {
     if (err) throw err;
     console.log('Data written to file');
 });

@@ -3,13 +3,14 @@ const { Schema } = mongoose;
 
 const languageSchema = new Schema(
   {
-    language: String,
+    language: {type:String, required: [true, 'Name is required']},
     family: String,
     description: String,
     iso693: String,
     region: String,
     status: String,
-    words: [Array],
+    speakers: Number,
+    words: {type:Object},
   },
   { timestamps: true }
 );

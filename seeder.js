@@ -27,7 +27,7 @@ async function main() {
      * Import the JSON data into the database
      */
 
-    const data = await fs.readFile(path.join(__dirname, "swadesh3.json"), "utf8");
+    const data = await fs.readFile(path.join(__dirname, "swadesh5.json"), "utf8");
     await db.collection("languages").insertMany(JSON.parse(data));
 
     

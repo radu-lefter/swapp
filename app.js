@@ -6,6 +6,10 @@ const mongoose = require("mongoose");
 const User = require("./models/User");
 const expressSession = require("express-session");
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 
 /**
  * Controllers (route handlers).
@@ -17,6 +21,11 @@ const expressSession = require("express-session");
  const app = express();
  app.set("view engine", "ejs");
 
+ //let swadesh207 = ["I","you (singular)","he","we","you (plural)","they","this","that","here","there","who","what","where","when","how","not","all","many","some","few","other","one","two","three","four","five","big","long","wide","thick","heavy","small","short","narrow","thin","woman","man (adult male)","man (human being)","child","wife","husband","mother","father","animal","fish","bird","dog","louse","snake","worm","tree","forest","stick","fruit","seed","leaf","root","bark (of a tree)","flower","grass","rope","skin","meat","blood","bone","fat (noun)","egg","horn","tail","feather","hair","head","ear","eye","nose","mouth","tooth","tongue (organ)","fingernail","foot","leg","knee","hand","wing","belly","guts","neck","back","breast","heart","liver","to drink","to eat","to bite","to suck","to spit","to vomit","to blow","to breathe","to laugh","to see","to hear","to know","to think","to smell","to fear","to sleep","to live","to die","to kill","to fight","to hunt","to hit","to cut","to split","to stab","to scratch","to dig","to swim","to fly","to walk","to come","to lie (as in a bed)","to sit","to stand","to turn (intransitive)","to fall","to give","to hold","to squeeze","to rub","to wash","to wipe","to pull","to push","to throw","to tie","to sew","to count","to say","to sing","to play","to float","to flow","to freeze","to swell","sun","moon","star","water","rain","river","lake","sea","salt","stone","sand","dust","earth","cloud","fog","sky","wind","snow","ice","smoke","fire","ashes","to burn","road","mountain","red","green","yellow","white","black","night","day","year","warm","cold","full","new","old","good","bad","rotten","dirty","straight","round","sharp (as a knife)","dull (as a knife)","smooth","wet","dry","correct","near","far","right","left","at","in","with","and","if","because","name"];
+ //swadesh207.sort();
+ //app.locals.swa207 = swadesh207;
+
+ 
  /**
  * pulling the values from our environment
  */
@@ -44,9 +53,10 @@ mongoose.connection.on("error", (err) => {
 
  app.use(express.json()); //Used to parse JSON bodies
 
- app.use(express.urlencoded()); //Parse URL-encoded bodies
+ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
- app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
+ app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) }, resave: true,
+ saveUninitialized: true }))
 
 
 
@@ -120,13 +130,31 @@ app.post("/login-user", userController.login);
 // @description Get add language page
 // @access Protected
 
-// app.get("/create-language", authMiddleware, (req, res) => {
-//   res.render("create-language", { errors: {} });
-// });
+app.get("/create-language", authMiddleware, (req, res) => {
+  res.render("create-language", { errors: {} });
+});
+
+//app.get("/create-language", languageController.createForm);
+
+// @route POST /create-language
+// @description Add a language
+// @access Protected
+app.post("/create-language", languageController.create);
 
 
 
+// @route GET /view/delete/:id
+// @description Delete language
+// @access Protected
 
+app.get("/view/delete/:id", authMiddleware, languageController.delete);
+
+// @route GET /view/update/:id
+// @description Update language
+// @access 
+
+app.get("/view/update/:id", languageController.edit);
+app.post("/view/update/:id", languageController.update);
 
 app.listen(WEB_PORT, () => {
   console.log(

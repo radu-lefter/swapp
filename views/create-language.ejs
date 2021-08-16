@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
       <meta name="description" content="" />
-      <title>World Wines</title>
+      <title>Swadesh</title>
 
       <link
         rel="canonical"
@@ -32,46 +32,148 @@
         <h1 class="text-center">Create Language</h1>
         <div class="row justify-content-md-center">
           <div class="col-">
-            <form method="POST" action="/create-tasting">
+            <form method="POST" action="/create-language">
               <div class="form-group">
-                <label for="name">Wine Title </label>
+                <label for="name">Name</label>
                 <input
                   type="text"
                   class="form-control"
                   id="name"
-                  name="title"
-                  placeholder="Enter Title"
+                  name="language"
+                  placeholder="Enter language name"
                 />
 
-                <% if (errors['title']) { %>
-                <p style="color: red"><%= errors['title'].message %></p>
+                <% if (errors['name']) { %>
+                  <p style="color: red"><%= errors['name'].message %></p>
                 <% } %>
+                
               </div>
 
               <div class="form-group">
-                <label for="name">Points</label>
+                <label for="iso693">ISO 693-3</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="iso693"
+                  name="iso693"
+                  placeholder="Enter iso code"
+                />
+
+                
+              </div>
+
+              <div class="form-group">
+                <label for="family">Select family</label>
+                <select
+                  class="form-control"
+                  name="family"
+                  id="family"
+                >
+                  <option>Niger-Congo</option>
+                  <option>Austronesian</option>
+                  <option>Trans–New Guinea</option>
+                  <option>Sino-Tibetan</option>
+                  <option>Indo-European</option>
+                  <option>Australian</option>
+                  <option>Afro-Asiatic</option>
+                  <option>Nilo-Saharan</option>
+                  <option>Oto-Manguean</option>
+                  <option>Austroasiatic</option>
+                  <option>Tai–Kadai</option>
+                  <option>Dravidian</option>
+                  <option>Tupian</option>
+                </select>
+            
+                
+              </div>
+
+
+              <div class="form-group">
+                <label for="region">Select region</label>
+                <select
+                  class="form-control"
+                  name="region"
+                  id="region"
+                >
+                  <option>Worldwide</option>
+                  <option>Europe</option>
+                  <option>Asia</option>
+                  <option>Africa</option>
+                  <option>North America</option>
+                  <option>South America</option>
+                  <option>Central America</option>
+                  <option>Oceania</option>
+
+                </select>
+            
+                
+              </div>
+
+              <div class="form-group">
+                <label for="region">Select status</label>
+                <select
+                  class="form-control"
+                  name="status"
+                  id="status"
+                >
+                  <option>International</option>
+                  <option>National</option>
+                  <option>Provincial</option>
+                  <option>Threatened</option>
+                  <option>Moribund</option>
+                  <option>Extinct</option>
+
+                </select>
+            
+                
+              </div>
+
+              <div class="form-group">
+                <label for="speakers">Speakers</label>
                 <input
                   type="number"
                   class="form-control"
-                  id="name"
-                  name="points"
+                  id="speakers"
+                  name="speakers"
+                  placeholder="Enter number of speakers"
                 />
 
-                <% if (errors['points']) { %>
-                <p style="color: red"><%= errors['points'].message %></p>
-                <% } %>
+                
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Select Taster</label>
-                <select
+                <label for="description">Description</label>
+                <textarea
+                  type="number"
                   class="form-control"
-                  name="taster_id"
-                  id="exampleFormControlSelect1"
-                >
-                  <option>Foo</option>
-                </select>
+                  id="description"
+                  name="description"
+                  rows="6" cols="50"
+                />
+
+                </textarea>
+
+                
               </div>
+              
+              <p>Introduce any of the words you know</p>
+
+              
+      
+              <div class="form-group">
+                
+                <input
+                  type="text"
+                  class="form-control"
+                
+                  name="all"
+                  placeholder="all"
+                />
+
+                
+              </div>
+                  
+              
 
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>

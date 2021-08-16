@@ -48,21 +48,21 @@
 
         <%  
         
-          language.words.forEach(word => {
+        for (const word in language.words) {
             
         %>
 
             <tr>
-                <th><%=  word[0]  %></th>
-                <td><%=  word[1]  %></td>   
+                <th><%=  word  %></th>
+                <td><%=  language.words[word]  %></td>   
             </tr>
             
          <%  
-          });
+          };
          %>
          <tr>
-            <td><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
-            <td><a  href="/languages/delete/<%= language.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            <td><a href="/view/update/<%= language.id %>" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+            <td><a  href="/view/delete/<%= language.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
         </tr>
 
 
