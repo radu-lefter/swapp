@@ -44,8 +44,8 @@
                   
                 />
 
-                <% if (errors['name']) { %>
-                  <p style="color: red"><%= errors['name'].message %></p>
+                <% if (errors['language']) { %>
+                  <p style="color: red"><%= errors['language'].message %></p>
                 <% } %>
                 
               </div>
@@ -53,6 +53,7 @@
               <div class="form-group">
                 <label for="iso693">ISO 693-3</label>
                 <input
+                value="<%= language.iso693 %>"
                   type="text"
                   class="form-control"
                   id="iso693"
@@ -98,7 +99,7 @@
                 >
                   <option>Worldwide</option>
                   <option>Europe</option>
-                  <option>Asia</option>
+                  <option>>Asia</option>
                   <option>Africa</option>
                   <option>North America</option>
                   <option>South America</option>
@@ -106,6 +107,8 @@
                   <option>Oceania</option>
 
                 </select>
+
+               
             
                 
               </div>
@@ -132,6 +135,7 @@
               <div class="form-group">
                 <label for="speakers">Speakers</label>
                 <input
+                value="<%= language.speakers %>"
                   type="number"
                   class="form-control"
                   id="speakers"
@@ -145,13 +149,13 @@
               <div class="form-group">
                 <label for="description">Description</label>
                 <textarea
-                  type="number"
+                  type="text"
                   class="form-control"
                   id="description"
                   name="description"
                   rows="6" cols="50"
                 />
-
+                <%= language.description %>
                 </textarea>
 
                 
@@ -161,18 +165,21 @@
 
               
       
-              <div class="form-group">
-                
-                <input
-                  type="text"
-                  class="form-control"
-                
-                  name="all"
-                  placeholder="all"
-                />
-
-                
-              </div>
+              <% for (const [key, value] of Object.entries(language.words)) { %>
+      
+                <div class="form-group">
+                  <label ><%= key %></label>
+                  <input
+                    value="<%= value %>"
+                    type="text"
+                    class="form-control"
+                    name="<%= key %>"
+                  />
+  
+                  
+                </div>
+                    
+                <% } %>
                   
               
 

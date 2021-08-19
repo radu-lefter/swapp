@@ -43,8 +43,8 @@
                   placeholder="Enter language name"
                 />
 
-                <% if (errors['name']) { %>
-                  <p style="color: red"><%= errors['name'].message %></p>
+                <% if (errors['language']) { %>
+                  <p style="color: red"><%= errors['language'].message %></p>
                 <% } %>
                 
               </div>
@@ -158,22 +158,21 @@
               
               <p>Introduce any of the words you know</p>
 
-              
+              <% for (const word of swadesh207){ %>
       
               <div class="form-group">
-                
                 <input
                   type="text"
                   class="form-control"
                 
-                  name="all"
-                  placeholder="all"
+                  name="<%= word %>"
+                  placeholder="<%= word %>"
                 />
 
                 
               </div>
                   
-              
+              <% } %>
 
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>

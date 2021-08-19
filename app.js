@@ -78,7 +78,7 @@ mongoose.connection.on("error", (err) => {
  }
 
 // @route GET /
-// @description Get home page
+// @description Get home page and all languages
 // @access Public
 
 // app.get("/", (req, res) => {
@@ -87,7 +87,6 @@ mongoose.connection.on("error", (err) => {
 
 app.get("/", languageController.list);
 
-app.get("/view/:id", languageController.view);
 
 app.get("/logout", async (req, res) => {
   req.session.destroy();
@@ -95,10 +94,15 @@ app.get("/logout", async (req, res) => {
   res.redirect('/');
 })
 
-// @route GET /languages
-// @description Get all languages
+// @route GET /search
+// @description Get languages by language name
 // @access Public
-app.get("/languages", languageController.list);
+app.get("/search", languageController.search);
+
+// @route GET /view/:id
+// @description Get one language by id
+// @access Public
+app.get("/view/:id", languageController.view);
 
  
 // @route GET /join
@@ -131,10 +135,12 @@ app.post("/login-user", userController.login);
 // @access Protected
 
 app.get("/create-language", authMiddleware, (req, res) => {
-  res.render("create-language", { errors: {} });
+  var swadesh207 = ["all","and","animal","ashes","at","back","bad","bark (of a tree)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull (as a knife)","dust","ear","earth","egg","eye","far","fat (noun)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man (adult male)","man (human being)","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp (as a knife)","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","thick","thin","this","three","to bite","to blow",
+  "to breathe","to burn","to come","to count","to cut","to die","to dig","to drink","to eat","to fall","to fear","to fight","to float","to flow","to fly","to freeze","to give","to hear","to hit","to hold","to hunt","to kill","to know","to laugh","to lie (as in a bed)","to live","to play","to pull","to push","to rub","to say","to scratch","to see","to sew","to sing","to sit","to sleep","to smell","to spit","to split","to squeeze","to stab","to stand","to suck","to swell","to swim","to think","to throw","to tie","to turn (intransitive)","to vomit","to walk","to wash","to wipe","tongue (organ)","tooth","tree","two","warm","water","we","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you (plural)","you (singular)"];
+  //swadesh207.forEach(e => console.log('"'+ e + '"'+ ','))
+  res.render("create-language", { errors: {}, swadesh207: swadesh207 });
 });
 
-//app.get("/create-language", languageController.createForm);
 
 // @route POST /create-language
 // @description Add a language
@@ -151,10 +157,18 @@ app.get("/view/delete/:id", authMiddleware, languageController.delete);
 
 // @route GET /view/update/:id
 // @description Update language
-// @access 
+// @access Protected
 
-app.get("/view/update/:id", languageController.edit);
+app.get("/view/update/:id", authMiddleware, languageController.edit);
+
+// @route POST /view/update/:id
+// @description Update language
+// @access Protected
+
 app.post("/view/update/:id", languageController.update);
+
+
+
 
 app.listen(WEB_PORT, () => {
   console.log(

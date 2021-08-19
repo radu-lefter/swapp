@@ -22,6 +22,36 @@ exports.list = async (req, res) => {
   }
 };
 
+exports.search = async (req, res) => {
+
+  const perPage = 30;
+  const limit = parseInt(req.query.limit) || 30; // Make sure to parse the limit to number
+  const page = parseInt(req.query.page) || 1;
+  const { langName } = req.query;
+  const regex = new RegExp("^"+langName, 'i');
+  var numberOfPages = 0;
+
+  try {
+
+    const languages = await Language.find({language: {$regex: regex}}).skip((perPage * page) - perPage).limit(limit);
+    const count = await Language.find({language: {$regex: regex}}).countDocuments();
+    if(count < perPage){
+      numberOfPages = 1;
+    }else{
+      numberOfPages = Math.ceil(count / perPage);
+    }
+    
+
+    res.render("index", {
+      languages: languages,
+      numberOfPages: numberOfPages,
+      currentPage: page
+    });
+  } catch (e) {
+    res.status(404).send({ message: "could not list languagessssssssssss" });
+  }
+};
+
 exports.view = async (req, res) => {
   const id = req.params.id;
   try {
@@ -61,64 +91,64 @@ exports.edit = async (req, res) => {
       return;
     }
     res.status(404).send({
-      message: `could find taster ${id}.`,
+      message: `could not find taster ${id}.`,
     });
   }
 };
 
 exports.update = async (req, res) => {
   const id = req.params.id;
+  const arr = ["all","and","animal","ashes","at","back","bad","bark (of a tree)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull (as a knife)","dust","ear","earth","egg","eye","far","fat (noun)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man (adult male)","man (human being)","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp (as a knife)","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","thick","thin","this","three","to bite","to blow","to breathe","to burn","to come","to count","to cut","to die","to dig","to drink","to eat","to fall","to fear","to fight","to float","to flow","to fly","to freeze","to give","to hear","to hit","to hold","to hunt","to kill","to know","to laugh","to lie (as in a bed)","to live","to play","to pull","to push","to rub","to say","to scratch","to see","to sew","to sing","to sit","to sleep","to smell","to spit","to split","to squeeze","to stab","to stand","to suck","to swell","to swim","to think","to throw","to tie","to turn (intransitive)","to vomit","to walk","to wash","to wipe","tongue (organ)","tooth","tree","two","warm","water","we","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you (plural)","you (singular)"];
+  let words = {}
+  Object.keys(req.body).forEach(key => { if (arr.includes(key)) words[key] = req.body[key] });
+  //req.body
   try {
-    const language = await Language.updateOne({ _id: id }, req.body);
-    //console.log(req.body)
-    res.redirect('/');
+    const language = await Language.updateOne({ _id: id }, {$set: {"language":req.body.language,
+                                                                   "iso693":req.body.iso693,
+                                                                   "description":req.body.description,
+                                                                   "status":req.body.status,
+                                                                   "speakers":req.body.speakers,
+                                                                   "region":req.body.region,
+                                                                   "family":req.body.family,
+                                                                    words: words}});
+
+    //console.log(req.body) 
+    res.redirect("/");
   } catch (e) {
     res.status(404).send({
-      message: `could find taster ${id}.`,
+      message: `could not find taster ${id}.`,
     });
   }
 }; 
 
-// exports.createForm = async (req, res) => {
-  
-//   try {
-//     const swadesh207 =["I","you (singular)","he","we","you (plural)","they","this","that","here","there","who","what","where","when","how","not","all","many","some","few","other","one","two","three","four","five","big","long","wide","thick","heavy","small","short","narrow","thin","woman","man (adult male)","man (human being)","child","wife","husband","mother","father","animal","fish","bird","dog","louse","snake","worm","tree","forest","stick","fruit","seed","leaf","root","bark (of a tree)","flower","grass","rope","skin","meat","blood","bone","fat (noun)","egg","horn","tail","feather","hair","head","ear","eye","nose","mouth","tooth","tongue (organ)","fingernail","foot","leg","knee","hand","wing","belly","guts","neck","back","breast","heart","liver","to drink","to eat","to bite","to suck","to spit","to vomit","to blow","to breathe","to laugh","to see","to hear","to know","to think","to smell","to fear","to sleep","to live","to die","to kill","to fight","to hunt","to hit","to cut","to split","to stab","to scratch","to dig","to swim","to fly","to walk","to come","to lie (as in a bed)","to sit","to stand","to turn (intransitive)","to fall","to give","to hold","to squeeze","to rub","to wash","to wipe","to pull","to push","to throw","to tie","to sew","to count","to say","to sing","to play","to float","to flow","to freeze","to swell","sun","moon","star","water","rain","river","lake","sea","salt","stone","sand","dust","earth","cloud","fog","sky","wind","snow","ice","smoke","fire","ashes","to burn","road","mountain","red","green","yellow","white","black","night","day","year","warm","cold","full","new","old","good","bad","rotten","dirty","straight","round","sharp (as a knife)","dull (as a knife)","smooth","wet","dry","correct","near","far","right","left","at","in","with","and","if","because","name"];
-//     swadesh207.sort();
-//     res.render('create-language', { swadesh207: swadesh207, errors:{} });
-//   } catch (e) {
-//     if (e.errors) {
-//       console.log('here are our errors');
-//       console.log(e.errors);
-//       res.render('create-language', { errors: e.errors })
-//       return;
-//     }
-//     res.status(404).send({
-//       message: `could find language .`,
-//     });
-//   }
-// };
 
 exports.create = async (req, res) => {
 
+  const arr = ["all","and","animal","ashes","at","back","bad","bark (of a tree)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull (as a knife)","dust","ear","earth","egg","eye","far","fat (noun)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man (adult male)","man (human being)","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp (as a knife)","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","thick","thin","this","three","to bite","to blow","to breathe","to burn","to come","to count","to cut","to die","to dig","to drink","to eat","to fall","to fear","to fight","to float","to flow","to fly","to freeze","to give","to hear","to hit","to hold","to hunt","to kill","to know","to laugh","to lie (as in a bed)","to live","to play","to pull","to push","to rub","to say","to scratch","to see","to sew","to sing","to sit","to sleep","to smell","to spit","to split","to squeeze","to stab","to stand","to suck","to swell","to swim","to think","to throw","to tie","to turn (intransitive)","to vomit","to walk","to wash","to wipe","tongue (organ)","tooth","tree","two","warm","water","we","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you (plural)","you (singular)"];
+
+  let words = {}
+  Object.keys(req.body).forEach(key => { if (arr.includes(key)) words[key] = req.body[key] });
   try {
+  
     const language = new Language({ language: req.body.language,
                                     family: req.body.family,
                                     description: req.body.description,
                                     iso693: req.body.iso693,
                                     region: req.body.region,
                                     status: req.body.status, 
-                                    speakers: req.body.speakers});
+                                    speakers: req.body.speakers,
+                                    words: words});
     await language.save();
-    res.redirect('/')
+    res.redirect("/");
   } catch (e) {
     if (e.errors) {
       console.log('here are our errors');
       console.log(e.errors);
-      res.render('create-language', {errors: e.errors })
+      res.render('create-language', {errors: e.errors, swadesh207:arr })
       return;
     }
     return res.status(400).send({
-      message: JSON.parse(e),
+      message: `could not create new list`,
     });
   }
 }

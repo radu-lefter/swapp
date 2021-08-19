@@ -122,19 +122,24 @@
             <li class="page-item disabled"><a class="page-link" href="#">First</a></li>     
           <% } %>  
           <% if (currentPage > 1) { %>
-              <li class="page-item"><a class="page-link" href="/languages">First</a></li>
+              <li class="page-item"><a class="page-link" href="/">First</a></li>
           <% } %>  
 
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 10 :  currentPage + 1 %>"><%= currentPage === numberOfPages ? currentPage - 10 :  currentPage + 1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 9 :  currentPage + 2 %>"><%= currentPage === numberOfPages ? currentPage - 9 :  currentPage + 2 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 8 :  currentPage + 3 %>"><%= currentPage === numberOfPages ? currentPage - 8 :  currentPage + 3 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 7 :  currentPage + 4 %>"><%= currentPage === numberOfPages ? currentPage - 7 :  currentPage + 4 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 6 :  currentPage + 5 %>"><%= currentPage === numberOfPages ? currentPage - 6 :  currentPage + 5 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 5 :  currentPage + 6 %>"><%= currentPage === numberOfPages ? currentPage - 5 :  currentPage + 6 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 4 :  currentPage + 7 %>"><%= currentPage === numberOfPages ? currentPage - 4 :  currentPage + 7 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 3 :  currentPage + 8 %>"><%= currentPage === numberOfPages ? currentPage - 3 :  currentPage + 8 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 2 :  currentPage + 9 %>"><%= currentPage === numberOfPages ? currentPage - 2 :  currentPage + 9 %></a></li>
-            <li class="page-item"><a class="page-link" href="/languages?page=<%= currentPage === numberOfPages ? currentPage - 1 :  currentPage + 10 %>"><%= currentPage === numberOfPages ? currentPage - 1 :  currentPage + 10 %></a></li>
+          <% if (numberOfPages > 1) { %>
+
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 10 :  currentPage + 1 %>"><%= currentPage === numberOfPages ? currentPage - 10 :  currentPage + 1 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 9 :  currentPage + 2 %>"><%= currentPage === numberOfPages ? currentPage - 9 :  currentPage + 2 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 8 :  currentPage + 3 %>"><%= currentPage === numberOfPages ? currentPage - 8 :  currentPage + 3 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 7 :  currentPage + 4 %>"><%= currentPage === numberOfPages ? currentPage - 7 :  currentPage + 4 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 6 :  currentPage + 5 %>"><%= currentPage === numberOfPages ? currentPage - 6 :  currentPage + 5 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 5 :  currentPage + 6 %>"><%= currentPage === numberOfPages ? currentPage - 5 :  currentPage + 6 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 4 :  currentPage + 7 %>"><%= currentPage === numberOfPages ? currentPage - 4 :  currentPage + 7 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 3 :  currentPage + 8 %>"><%= currentPage === numberOfPages ? currentPage - 3 :  currentPage + 8 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 2 :  currentPage + 9 %>"><%= currentPage === numberOfPages ? currentPage - 2 :  currentPage + 9 %></a></li>
+            <li class="page-item"><a class="page-link" href="/?page=<%= currentPage === numberOfPages ? currentPage - 1 :  currentPage + 10 %>"><%= currentPage === numberOfPages ? currentPage - 1 :  currentPage + 10 %></a></li>
+            
+            <% } %> 
+            
         
           <% if (currentPage === numberOfPages) { %>
             
