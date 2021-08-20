@@ -135,9 +135,8 @@ app.post("/login-user", userController.login);
 // @access Protected
 
 app.get("/create-language", authMiddleware, (req, res) => {
-  var swadesh207 = ["all","and","animal","ashes","at","back","bad","bark (of a tree)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull (as a knife)","dust","ear","earth","egg","eye","far","fat (noun)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man (adult male)","man (human being)","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp (as a knife)","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","thick","thin","this","three","to bite","to blow",
-  "to breathe","to burn","to come","to count","to cut","to die","to dig","to drink","to eat","to fall","to fear","to fight","to float","to flow","to fly","to freeze","to give","to hear","to hit","to hold","to hunt","to kill","to know","to laugh","to lie (as in a bed)","to live","to play","to pull","to push","to rub","to say","to scratch","to see","to sew","to sing","to sit","to sleep","to smell","to spit","to split","to squeeze","to stab","to stand","to suck","to swell","to swim","to think","to throw","to tie","to turn (intransitive)","to vomit","to walk","to wash","to wipe","tongue (organ)","tooth","tree","two","warm","water","we","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you (plural)","you (singular)"];
-  //swadesh207.forEach(e => console.log('"'+ e + '"'+ ','))
+  var swadesh207 = ["all","and","animal","ashes","at","back","bad","bark (n)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull","dust","ear","earth","egg","eye","far","fat (n)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he/she","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","person","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","they two","thick","thin","this","three","bite","blow","breathe","burn","come","count","cut","die","dig","drink","eat","fall","fear","fight","float","flow","fly (n)","fly (v)","freeze","give","hear","hit","hold","hunt","kill","know","laugh","lie","live","play","pull","push","rub","say","scratch","see","sew","sing","sit","sleep","smell","spit","split","squeeze","stab","stand","suck","swell","swim","think","throw","tie","turn","thou","tongue","tooth","tree","two","vomit","walk","wash","wipe","warm","water","we","we two","we (excl)","we (incl)","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you","you two","you (plural)","you (singular)"];
+  
   res.render("create-language", { errors: {}, swadesh207: swadesh207 });
 });
 
@@ -167,7 +166,18 @@ app.get("/view/update/:id", authMiddleware, languageController.edit);
 
 app.post("/view/update/:id", languageController.update);
 
+// @route GET /select-languages
+// @description Get compare languages form
+// @access Public
+app.get("/select-languages", (req, res) => {
+ 
+  res.render("select-languages");
+});
 
+// @route GET /compare-languages
+// @description Get two languages
+// @access Public
+app.get("/compare-language", languageController.compare);
 
 
 app.listen(WEB_PORT, () => {

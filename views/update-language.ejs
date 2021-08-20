@@ -29,7 +29,7 @@
       <%- include('common/header'); -%>
 
       <div class="container">
-        <h1 class="text-center">Create Language</h1>
+        <h1 class="text-center">Update Language</h1>
         <div class="row justify-content-md-center">
           <div class="col-">
             <form method="POST">
@@ -71,19 +71,20 @@
                   name="family"
                   id="family"
                 >
-                  <option>Niger-Congo</option>
-                  <option>Austronesian</option>
-                  <option>Trans–New Guinea</option>
-                  <option>Sino-Tibetan</option>
-                  <option>Indo-European</option>
-                  <option>Australian</option>
-                  <option>Afro-Asiatic</option>
-                  <option>Nilo-Saharan</option>
-                  <option>Oto-Manguean</option>
-                  <option>Austroasiatic</option>
-                  <option>Tai–Kadai</option>
-                  <option>Dravidian</option>
-                  <option>Tupian</option>
+                  <% if(language.family == "") { %> <option selected></option> <% } else { %> <option >Please select</option> <%}%>
+                  <% if(language.family == "Niger-Congo") { %> <option selected>Niger-Congo</option> <% } else { %> <option >Niger-Congo</option> <%}%>
+                  <% if(language.family == "Austronesian") { %> <option selected>Austronesian</option> <% } else { %> <option >Austronesian</option> <%}%>
+                  <% if(language.family == "Trans–New Guinea") { %> <option selected>Trans–New Guinea</option> <% } else { %> <option >Trans–New Guinea</option> <%}%>
+                  <% if(language.family == "Sino-Tibetan") { %> <option selected>Sino-Tibetan</option> <% } else { %> <option >Sino-Tibetan</option> <%}%>
+                  <% if(language.family == "Indo-European") { %> <option selected>Indo-European</option> <% } else { %> <option >Indo-European</option> <%}%>
+                  <% if(language.family == "Australian") { %> <option selected>Australian</option> <% } else { %> <option >Australian</option> <%}%>
+                  <% if(language.family == "Afro-Asiatic") { %> <option selected>Afro-Asiatic</option> <% } else { %> <option >Afro-Asiatic</option> <%}%>
+                  <% if(language.family == "Nilo-Saharan") { %> <option selected>Nilo-Saharan</option> <% } else { %> <option >Nilo-Saharan</option> <%}%>
+                  <% if(language.family == "Oto-Manguean") { %> <option selected>Oto-Manguean</option> <% } else { %> <option >Oto-Manguean</option> <%}%>
+                  <% if(language.family == "Austroasiatic") { %> <option selected>Austroasiatic</option> <% } else { %> <option >Austroasiatic</option> <%}%>
+                  <% if(language.family == "Tai–Kadai") { %> <option selected>Tai–Kadai</option> <% } else { %> <option >Tai–Kadai</option> <%}%>
+                  <% if(language.family == "Dravidian") { %> <option selected>Dravidian</option> <% } else { %> <option >Dravidian</option> <%}%>
+                  <% if(language.family == "Tupian") { %> <option selected>Tupian</option> <% } else { %> <option >Tupian</option> <%}%>
                 </select>
             
                 
@@ -97,14 +98,15 @@
                   name="region"
                   id="region"
                 >
-                  <option>Worldwide</option>
-                  <option>Europe</option>
-                  <option>>Asia</option>
-                  <option>Africa</option>
-                  <option>North America</option>
-                  <option>South America</option>
-                  <option>Central America</option>
-                  <option>Oceania</option>
+                <% if(language.region == "") { %> <option selected></option> <% } else { %> <option >Please select</option> <%}%>
+                <% if(language.region == "Worldwide") { %> <option selected>Worldwide</option> <% } else { %> <option >Worldwide</option> <%}%>
+                <% if(language.region == "Europe") { %> <option selected>Europe</option> <% } else { %> <option >Europe</option> <%}%>
+                <% if(language.region == "Asia") { %> <option selected>Asia</option> <% } else { %> <option >Asia</option> <%}%>
+                <% if(language.region == "Africa") { %> <option selected>Africa</option> <% } else { %> <option >Africa</option> <%}%>
+                <% if(language.region == "North America") { %> <option selected>North America</option> <% } else { %> <option >North America</option> <%}%>
+                <% if(language.region == "South America") { %> <option selected>South America</option> <% } else { %> <option >South America</option> <%}%>
+                <% if(language.region == "Central America") { %> <option selected>Central America</option> <% } else { %> <option >Central America</option> <%}%>
+                <% if(language.region == "Oceania") { %> <option selected>Oceania</option> <% } else { %> <option >Oceania</option> <%}%>
 
                 </select>
 
@@ -120,12 +122,13 @@
                   name="status"
                   id="status"
                 >
-                  <option>International</option>
-                  <option>National</option>
-                  <option>Provincial</option>
-                  <option>Threatened</option>
-                  <option>Moribund</option>
-                  <option>Extinct</option>
+                  <% if(language.status == "") { %> <option selected></option> <% } else { %> <option >Please select</option> <%}%>
+                  <% if(language.status == "International") { %> <option selected>International</option> <% } else { %> <option >International</option> <%}%>
+                  <% if(language.status == "National") { %> <option selected>National</option> <% } else { %> <option >National</option> <%}%>
+                  <% if(language.status == "Provincial") { %> <option selected>Provincial</option> <% } else { %> <option >Provincial</option> <%}%>
+                  <% if(language.status == "Threatened") { %> <option selected>Threatened</option> <% } else { %> <option >Threatened</option> <%}%>
+                  <% if(language.status == "Moribund") { %> <option selected>Moribund</option> <% } else { %> <option >Moribund</option> <%}%>
+                  <% if(language.status == "Extinct") { %> <option selected>Extinct</option> <% } else { %> <option >Extinct</option> <%}%>
 
                 </select>
             

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <title>Swadesh Languages</title>
+
+    
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.5/examples/album/"
+    />
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('common/header'); -%>
+     
+<div class="container">
+    <div class="row col-md-12 col-md-offset-2 custyle mx-auto">
+
+        <h1 class="mx-auto"> Choose two languages to compare </h1>
+
+        <div class="row col-md-10 justify-content-md-center">
+          <div class="col-md-8">
+            <form class="input-group" method="GET" action="/compare-language">
+              <div class="form-group"><label for="lang1">Language 1</label>
+                <input type="search" class="form-control " placeholder="Search" aria-label="Search"
+                   id="lang1" name="lang1"/></div>
+                
+                   <div class="form-group"><label for="lang2">Language 2</label>
+                    <input type="search" class="form-control " placeholder="Search" aria-label="Search"
+                     id="lang2" name="lang2"/> <br/></div>
+                
+                <button type="submit" class="btn btn-outline-primary">search</button>
+            </form>
+          </div>
+          
+      </div>
+        
+      
+        <div class="col-md-6">
+            <h2 class="mx-auto"> <%=  languageOne.language  %>  </h2>
+            <div class="table-responsive"> 
+   
+            <table class="table table-striped custab">
+            
+                <tr>
+                    <th>Name</th>
+                    <td class="float-right"><%=  languageOne.language  %></td>
+                </tr>
+                <tr>
+                    <th>Family</th>
+                    <td class="float-right"><%=  languageOne.family  %></td>
+                </tr>
+                <tr>
+                <th>ISO</th>
+                <td class="float-right"><%=  languageOne.iso693  %></td>
+                </tr>
+                <tr>
+                <th>Region</th>
+                <td class="float-right"><%=  languageOne.region  %></td>
+                </tr>
+                <tr>
+                <th>Status</th>
+                <td class="float-right"><%=  languageOne.status  %></td>
+                </tr>
+                <tr>
+                <th>Speakers</th>
+                <td class="float-right"><%=  languageOne.speakers  %></td>
+                </tr> 
+                <tr>
+                <th>Description</th>
+                <td class="float-right"><%=  languageOne.description  %></td>
+                </tr> 
+
+                <%  
+                
+                for (const word in languageOne.words) {
+                    
+                %>
+
+                    <tr>
+                        <th><%=  word  %></th>
+                        <td class="float-right"><%=  languageOne.words[word]  %></td>   
+                    </tr>
+                    
+                <%  
+                };
+                %>
+ 
+            </table>
+        </div>
+        </div>
+  
+    <div class="col-md-6">
+        <h2 class="mx-auto"> <%=  languageTwo.language  %>  </h2>
+        <div class="table-responsive"> 
+  
+    <table class="table table-striped custab">
+    
+        <tr>
+            <td><%=  languageTwo.language  %></td>
+            <th class="float-right">Name</th>
+            
+        </tr>
+        <tr>
+            
+            <td><%=  languageTwo.family  %></td>
+            <th class="float-right">Family</th>
+        </tr>
+        <tr>
+          
+          <td><%=  languageTwo.iso693  %></td>
+          <th class="float-right">ISO</th>
+        </tr>
+        <tr>
+          
+          <td><%=  languageTwo.region  %></td>
+          <th class="float-right">Region</th>
+        </tr>
+        <tr>
+          
+          <td><%=  languageTwo.status  %></td>
+          <th class="float-right">Status</th>
+        </tr>
+        <tr>
+          
+          <td><%=  languageTwo.speakers  %></td>
+          <th class="float-right">Speakers</th>
+        </tr> 
+        <tr>
+          
+          <td><%=  languageTwo.description  %></td>
+          <th class="float-right">Description</th>
+        </tr> 
+
+        <%  
+        
+        for (const word in languageTwo.words) {
+            
+        %>
+
+            <tr>
+                
+                <td><%=  languageTwo.words[word]  %></td>
+                <th class="float-right"><%=  word  %></th>   
+            </tr>
+            
+         <%  
+          };
+         %>
+         
+  
+    </table>
+</div>
+</div>
+
+  </div>
+
+</div>
+
+    
+    <%- include('common/footer') -%>
+  </body>
+</html>
