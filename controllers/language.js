@@ -11,11 +11,13 @@ exports.list = async (req, res) => {
     const languages = await Language.find({}).skip((perPage * page) - perPage).limit(limit);
     const count = await Language.find({}).countDocuments();
     const numberOfPages = Math.ceil(count / perPage);
+    const message = req.query.message;
 
     res.render("index", {
       languages: languages,
       numberOfPages: numberOfPages,
-      currentPage: page
+      currentPage: page, 
+      message: message
     });
   } catch (e) {
     res.status(404).send({ message: "could not list languages" });
@@ -61,7 +63,7 @@ exports.view = async (req, res) => {
     res.render('view-language', { language: language, id: id });
   } catch (e) {
     res.status(404).send({
-      message: `could find language with id ${id}.`,
+      message: `could not find language with id ${id}.`,
     });
   }
 };
@@ -70,17 +72,28 @@ exports.compare = async (req, res) => {
   const { lang1, lang2 } = req.query;
   const regex1 = new RegExp("^"+lang1, 'i');
   const regex2 = new RegExp("^"+lang2, 'i');
+
+  if(lang1 === "" || lang2 === ""){
+    res.render('select-languages', { errors: { message: 'You need to fill in the fields' } })
+    return;
+  }
+
   
   try {
 
     const languageOne = await Language.find({language: {$regex: regex1}});
     const languageTwo = await Language.find({language: {$regex: regex2}});
-    //console.log(languageOne);
 
-    res.render("compare-language", {
-      languageOne: languageOne[0],
-      languageTwo: languageTwo[0]
-    });
+    
+        res.render("compare-language", {
+        languageOne: languageOne[0],
+        languageTwo: languageTwo[0]
+      });
+    
+
+
+
+    
   } catch (e) {
     res.status(404).send({ message: "could not list languages" });
   }
@@ -92,7 +105,7 @@ exports.delete = async (req, res) => {
   try {
 
     await Language.findByIdAndRemove(id);
-    res.redirect("/");
+    res.redirect('/?message=Language successfully deleted!');
   } catch (e) {
     res.status(404).send({
       message: `could not delete  record ${id}.`,
@@ -136,7 +149,7 @@ exports.update = async (req, res) => {
                                                                     words: words}});
 
     //console.log(req.body) 
-    res.redirect("/");
+    res.redirect('/?message=Language successfully modified!');
   } catch (e) {
     res.status(404).send({
       message: `could not find taster ${id}.`,

@@ -1,30 +1,34 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/"> Swadesh Lists </a>
+      <a class="navbar-brand text-primary" href="/">All Swadesh Lists </a>
       <div class="navbar">
-        <div class="navbar-nav">
+        <div class="navbar-nav ">
           
-          <a class="nav-link active" href="/">
+          <!-- <a class="nav-link active" href="/">
             All languages <span class="sr-only">(current)</span>
-          </a>
-          <a class="nav-link" href="select-languages">Compare languages</a>
-          <!-- <a class="nav-link" href="languages"> Languages</a> -->
+          </a> -->
+
+          <a class="nav-link text-primary" href="/about">About SwApp</a>
+          <a class="nav-link text-primary" href="/select-languages">Compare languages</a>
+          
+          
           <% if(user) { %> 
-            ...
-            <a class="nav-link" href="logout"> <%= user.email %> (Logout) </a>
-            <a class="nav-link" href="create-language"> New language </a>
+            
+            <a class="nav-link text-primary" href="create-language"> New language </a>
+            <a class="nav-link text-primary" href="logout"> <%= user.email %> (Logout) </a>
           <%  }%> 
           <% if(!user) { %>
-              <a class="nav-link" href="login"> Login </a>
-              <a class="nav-link" href="join"> Register </a>
+              <a class="nav-link text-primary" href="/login"> Login </a>
+              <a class="nav-link text-primary" href="/join"> Register </a>
           <% } %>
           <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="langName">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
+          
         </div>
       </div>
     </nav>
   </header>
-  ;
+  
   

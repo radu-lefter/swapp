@@ -41,16 +41,18 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
-    <%- include('common/header'); -%>
-
+    <%- include('common/header') -%>
+    <% if (locals.message) { %>
+      <p style="color: red"><%= message %></p>
+    <% } %>
     <main role="main">
-      <section class="jumbotron text-center">
+      <section class="jumbotron text-center bg-info">
         <div class="container">
           <h1>Extensive collection of Swadesh Lists</h1>
-          
+          <h3>Search for any language you can think of and then click on it to see a list of the first 215 concepts in that langauge</h3>
         </div>
       </section>
 
@@ -64,6 +66,7 @@
             %>
 
             <div class="col-md-4">
+              <a href="/view/<%= language.id %>" >
               <div class="card mb-4 shadow-sm">
                 <svg
                   class="bd-placeholder-img card-img-top"
@@ -76,7 +79,7 @@
                   aria-label=""
                 >
                   <title><%=  language.language  %></title>
-                  <rect width="100%" height="100%" fill="#55595c" />
+                  <rect width="100%" height="100%" fill="#003366" />
                   <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                     <%=  language.language  %>
                   </text>
@@ -100,6 +103,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
             
             <%  

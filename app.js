@@ -72,7 +72,7 @@ mongoose.connection.on("error", (err) => {
  const authMiddleware = async (req, res, next) => {
    const user = await User.findById(req.session.userID);
    if (!user) {
-     return res.redirect('/');
+     return res.redirect('/?message=You need to be logged in in order to perform this action!');
    }
    next()
  }
@@ -80,10 +80,6 @@ mongoose.connection.on("error", (err) => {
 // @route GET /
 // @description Get home page and all languages
 // @access Public
-
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
 
 app.get("/", languageController.list);
 
@@ -104,12 +100,22 @@ app.get("/search", languageController.search);
 // @access Public
 app.get("/view/:id", languageController.view);
 
+
+
+// @route GET /about
+// @description Get about page
+// @access Public
+
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
  
 // @route GET /join
 // @description Get registration page
 // @access Public
 app.get("/join", (req, res) => {
-  res.render("create-user");
+  res.render("create-user", { errors: {}});
 });
 
 // @route POST /create-user
@@ -122,7 +128,7 @@ app.post("/create-user", userController.create);
 // @access Public
 
 app.get("/login", (req, res) => {
-  res.render("login-user");
+  res.render("login-user", { errors: {}});
 });
 
 // @route POST /login-user
@@ -136,7 +142,7 @@ app.post("/login-user", userController.login);
 
 app.get("/create-language", authMiddleware, (req, res) => {
   var swadesh207 = ["all","and","animal","ashes","at","back","bad","bark (n)","because","belly","big","bird","black","blood","bone","breast","child","cloud","cold","correct","day","dirty","dog","dry","dull","dust","ear","earth","egg","eye","far","fat (n)","father","feather","few","fingernail","fire","fish","five","flower","fog","foot","forest","four","fruit","full","good","grass","green","guts","hair","hand","he/she","head","heart","heavy","here","horn","how","husband","I","ice","if","in","knee","lake","leaf","left","leg","liver","long","louse","man","many","meat","moon","mother","mountain","mouth","name","narrow","near","neck","new","night","nose","not","old","one","other","person","rain","red","right","river","road","root","rope","rotten","round","salt","sand","sea","seed","sharp","short","skin","sky","small","smoke","smooth","snake","snow","some","star","stick","stone","straight","sun","tail","that","there","they","they two","thick","thin","this","three","bite","blow","breathe","burn","come","count","cut","die","dig","drink","eat","fall","fear","fight","float","flow","fly (n)","fly (v)","freeze","give","hear","hit","hold","hunt","kill","know","laugh","lie","live","play","pull","push","rub","say","scratch","see","sew","sing","sit","sleep","smell","spit","split","squeeze","stab","stand","suck","swell","swim","think","throw","tie","turn","thou","tongue","tooth","tree","two","vomit","walk","wash","wipe","warm","water","we","we two","we (excl)","we (incl)","wet","what","when","where","white","who","wide","wife","wind","wing","with","woman","worm","year","yellow","you","you two","you (plural)","you (singular)"];
-  
+  //console.log(swadesh207.length);
   res.render("create-language", { errors: {}, swadesh207: swadesh207 });
 });
 
@@ -171,7 +177,7 @@ app.post("/view/update/:id", languageController.update);
 // @access Public
 app.get("/select-languages", (req, res) => {
  
-  res.render("select-languages");
+  res.render("select-languages", { errors: {}});
 });
 
 // @route GET /compare-languages

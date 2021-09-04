@@ -23,20 +23,23 @@
         crossorigin="anonymous"
       />
 
-      <link href="css/album.css" rel="stylesheet" />
+      <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
       <%- include('common/header'); -%>
       
       
       
-      <div class="container">
+      <div class="container smallPage">
         <h1 class="text-center">Register Here </h1>
         <div class="row justify-content-md-center">
           <div class="col-">
             <form method="POST" action="/create-user">
               <div class="form-group">
                 <label for="name">Email</label>
+                <% if (errors['email']) { %>
+                  <p style="color: red"><%= errors['email'].message %></p>
+                <% } %>
                 <input
                   type="text"
                   class="form-control"

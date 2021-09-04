@@ -36,6 +36,9 @@
           <div class="col-">
             <form method="GET" action="/compare-language">
             <div class="form-group">
+              <% if (errors['message']) { %>
+                <p style="color: red"><%= errors['message'] %></p>
+            <% } %>
               <label for="lang1">Choose first language</label>
               <input type="text" class="form-control" placeholder="Search" aria-label="Search"
                  id="lang1" name="lang1"/>
@@ -45,6 +48,7 @@
               <input type="text" class="form-control" placeholder="Search" aria-label="Search"
                id="lang2" name="lang2"/> <br/>
             </div>
+            
             <button type="submit" class="btn btn-outline-primary">search</button>
 
             </form>

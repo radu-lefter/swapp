@@ -4,6 +4,10 @@ const bcrypt = require('bcrypt');
 exports.create = async (req, res) => {
 
     try {
+      if(req.body.email === "" || req.body.password === ""){
+           res.render('create-user', { errors: { email: { message: 'Email or password cannot be empty' } } })
+           return;
+      }
       const user = new User({ email: req.body.email, password: req.body.password });
       await user.save();
       res.redirect('/')
@@ -24,11 +28,12 @@ exports.create = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            res.render('login-user', { errors: { email: { message: 'email not found' } } })
+            res.render('login-user', { errors: { email: { message: 'Email or password does not match' } } })
             return;
         }
 
         const match = await bcrypt.compare(req.body.password, user.password);
+
         
         if (match) {
           req.session.userID = user._id;
@@ -36,8 +41,10 @@ exports.create = async (req, res) => {
           res.redirect('/');
           return
         }
+        
+        //res.render('login-user', { errors: { password: { message: 'password does not match' } } })
 
-        res.render('login-user', { errors: { password: { message: 'password does not match' } } })
+        
 
 
     } catch (e) {

@@ -34,26 +34,34 @@
 
         <h1 class="mx-auto"> Choose two languages to compare </h1>
 
-        <div class="row col-md-10 justify-content-md-center">
-          <div class="col-md-8">
-            <form class="input-group" method="GET" action="/compare-language">
-              <div class="form-group"><label for="lang1">Language 1</label>
+        <div class="row col-md-12 justify-content-md-center mb-3">
+          <div class="form-row m-0">
+            <form method="GET" action="/compare-language">
+
+              <div class="form-group">
+                
+                <label for="lang1">Language 1</label> 
                 <input type="search" class="form-control " placeholder="Search" aria-label="Search"
-                   id="lang1" name="lang1"/></div>
+                   id="lang1" name="lang1"/>
+              </div>
                 
-                   <div class="form-group"><label for="lang2">Language 2</label>
-                    <input type="search" class="form-control " placeholder="Search" aria-label="Search"
-                     id="lang2" name="lang2"/> <br/></div>
+              <div class="form-group">
+                <label for="lang2">Language 2</label>
+                <input type="search" class="form-control " placeholder="Search" aria-label="Search"
+                id="lang2" name="lang2"/> <br/>
+              </div>
+              
+              <button type="submit" class="btn btn-outline-primary form-control align-bottom">Search</button>
+            
+              
                 
-                <button type="submit" class="btn btn-outline-primary">search</button>
             </form>
           </div>
           
-      </div>
-        
+        </div>
       
         <div class="col-md-6">
-            <h2 class="mx-auto"> <%=  languageOne.language  %>  </h2>
+            <h2 class="mx-auto table-info"> <%=  languageOne.language  %>  </h2>
             <div class="table-responsive"> 
    
             <table class="table table-striped custab">
@@ -107,7 +115,7 @@
         </div>
   
     <div class="col-md-6">
-        <h2 class="mx-auto"> <%=  languageTwo.language  %>  </h2>
+        <h2 class="mx-auto table-info"> <%=  languageTwo.language  %>  </h2>
         <div class="table-responsive"> 
   
     <table class="table table-striped custab">
@@ -168,6 +176,8 @@
     </table>
 </div>
 </div>
+
+        
 
   </div>
 
