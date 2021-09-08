@@ -6,7 +6,7 @@ const path = require("path");
 /**
  * constants
  */
-const uri = "mongodb://localhost:27017/swadesh";
+const uri = "mongodb+srv://raduL:12345@swapp.4t913.mongodb.net/languages?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
 async function main() {

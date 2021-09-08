@@ -81,8 +81,8 @@ exports.compare = async (req, res) => {
   
   try {
 
-    const languageOne = await Language.find({language: {$regex: regex1}});
-    const languageTwo = await Language.find({language: {$regex: regex2}});
+        const languageOne = await Language.find({language: {$regex: regex1}});
+        const languageTwo = await Language.find({language: {$regex: regex2}});
 
     
         res.render("compare-language", {

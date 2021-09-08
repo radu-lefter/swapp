@@ -30,7 +30,7 @@ mongoose.set('useCreateIndex', true);
  * pulling the values from our environment
  */
 
-const { WEB_PORT, MONGODB_URI } = process.env;
+const { PORT, MONGODB_URI } = process.env;
 
 /**
  * connect to database
@@ -94,6 +94,7 @@ app.get("/logout", async (req, res) => {
 // @description Get languages by language name
 // @access Public
 app.get("/search", languageController.search);
+
 
 // @route GET /view/:id
 // @description Get one language by id
@@ -186,9 +187,9 @@ app.get("/select-languages", (req, res) => {
 app.get("/compare-language", languageController.compare);
 
 
-app.listen(WEB_PORT, () => {
+app.listen(PORT, () => {
   console.log(
-    `Example app listening at http://localhost:${WEB_PORT}`,
+    `Example app listening at http://localhost:${PORT}`,
     
   );
 });

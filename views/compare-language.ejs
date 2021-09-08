@@ -29,161 +29,161 @@
   <body>
     <%- include('common/header'); -%>
      
-<div class="container">
-    <div class="row col-md-12 col-md-offset-2 custyle mx-auto">
+    <div class="container">
+          <div class="row col-md-12 col-md-offset-2 custyle mx-auto">
 
-        <h1 class="mx-auto"> Choose two languages to compare </h1>
+              <h1 class="mx-auto"> Choose two languages to compare </h1>
 
-        <div class="row col-md-12 justify-content-md-center mb-3">
-          <div class="form-row m-0">
-            <form method="GET" action="/compare-language">
+              <div class="row col-md-12 justify-content-md-center mb-3">
+                <div class="form-row m-0">
+                  <form method="GET" action="/compare-language">
 
-              <div class="form-group">
+                    <div class="form-group">
+                      
+                      <label for="lang1">Language 1</label> 
+                      <input type="search" class="form-control " placeholder="Search" aria-label="Search"
+                        id="lang1" name="lang1"/>
+                    </div>
+                      
+                    <div class="form-group">
+                      <label for="lang2">Language 2</label>
+                      <input type="search" class="form-control " placeholder="Search" aria-label="Search"
+                      id="lang2" name="lang2"/> <br/>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-outline-primary form-control align-bottom">Search</button>
+                  
+                    
+                      
+                  </form>
+                </div>
                 
-                <label for="lang1">Language 1</label> 
-                <input type="search" class="form-control " placeholder="Search" aria-label="Search"
-                   id="lang1" name="lang1"/>
               </div>
-                
-              <div class="form-group">
-                <label for="lang2">Language 2</label>
-                <input type="search" class="form-control " placeholder="Search" aria-label="Search"
-                id="lang2" name="lang2"/> <br/>
-              </div>
-              
-              <button type="submit" class="btn btn-outline-primary form-control align-bottom">Search</button>
             
-              
-                
-            </form>
-          </div>
-          
-        </div>
+              <div class="col-md-6">
+                  <h2 class="mx-auto table-info"> <%=  languageOne.language  %>  </h2>
+                  <div class="table-responsive"> 
+        
+                  <table class="table table-striped custab">
+                  
+                      <tr>
+                          <th>Name</th>
+                          <td class="float-right"><%=  languageOne.language  %></td>
+                      </tr>
+                      <tr>
+                          <th>Family</th>
+                          <td class="float-right"><%=  languageOne.family  %></td>
+                      </tr>
+                      <tr>
+                      <th>ISO</th>
+                      <td class="float-right"><%=  languageOne.iso693  %></td>
+                      </tr>
+                      <tr>
+                      <th>Region</th>
+                      <td class="float-right"><%=  languageOne.region  %></td>
+                      </tr>
+                      <tr>
+                      <th>Status</th>
+                      <td class="float-right"><%=  languageOne.status  %></td>
+                      </tr>
+                      <tr>
+                      <th>Speakers</th>
+                      <td class="float-right"><%=  languageOne.speakers  %></td>
+                      </tr> 
+                      <tr>
+                      <th>Description</th>
+                      <td class="float-right"><%=  languageOne.description  %></td>
+                      </tr> 
+
+                      <%  
+                      
+                      for (const word in languageOne.words) {
+                          
+                      %>
+
+                          <tr>
+                              <th><%=  word  %></th>
+                              <td class="float-right"><%=  languageOne.words[word]  %></td>   
+                          </tr>
+                          
+                      <%  
+                      };
+                      %>
       
-        <div class="col-md-6">
-            <h2 class="mx-auto table-info"> <%=  languageOne.language  %>  </h2>
-            <div class="table-responsive"> 
-   
-            <table class="table table-striped custab">
-            
-                <tr>
-                    <th>Name</th>
-                    <td class="float-right"><%=  languageOne.language  %></td>
-                </tr>
-                <tr>
-                    <th>Family</th>
-                    <td class="float-right"><%=  languageOne.family  %></td>
-                </tr>
-                <tr>
-                <th>ISO</th>
-                <td class="float-right"><%=  languageOne.iso693  %></td>
-                </tr>
-                <tr>
-                <th>Region</th>
-                <td class="float-right"><%=  languageOne.region  %></td>
-                </tr>
-                <tr>
-                <th>Status</th>
-                <td class="float-right"><%=  languageOne.status  %></td>
-                </tr>
-                <tr>
-                <th>Speakers</th>
-                <td class="float-right"><%=  languageOne.speakers  %></td>
-                </tr> 
-                <tr>
-                <th>Description</th>
-                <td class="float-right"><%=  languageOne.description  %></td>
-                </tr> 
-
-                <%  
+                  </table>
+              </div>
+              </div>
+        
+          <div class="col-md-6">
+              <h2 class="mx-auto table-info"> <%=  languageTwo.language  %>  </h2>
+              <div class="table-responsive"> 
+        
+          <table class="table table-striped custab">
+          
+              <tr>
+                  <td><%=  languageTwo.language  %></td>
+                  <th class="float-right">Name</th>
+                  
+              </tr>
+              <tr>
+                  
+                  <td><%=  languageTwo.family  %></td>
+                  <th class="float-right">Family</th>
+              </tr>
+              <tr>
                 
-                for (const word in languageOne.words) {
-                    
-                %>
+                <td><%=  languageTwo.iso693  %></td>
+                <th class="float-right">ISO</th>
+              </tr>
+              <tr>
+                
+                <td><%=  languageTwo.region  %></td>
+                <th class="float-right">Region</th>
+              </tr>
+              <tr>
+                
+                <td><%=  languageTwo.status  %></td>
+                <th class="float-right">Status</th>
+              </tr>
+              <tr>
+                
+                <td><%=  languageTwo.speakers  %></td>
+                <th class="float-right">Speakers</th>
+              </tr> 
+              <tr>
+                
+                <td><%=  languageTwo.description  %></td>
+                <th class="float-right">Description</th>
+              </tr> 
 
-                    <tr>
-                        <th><%=  word  %></th>
-                        <td class="float-right"><%=  languageOne.words[word]  %></td>   
-                    </tr>
-                    
-                <%  
+              <%  
+              
+              for (const word in languageTwo.words) {
+                  
+              %>
+
+                  <tr>
+                      
+                      <td><%=  languageTwo.words[word]  %></td>
+                      <th class="float-right"><%=  word  %></th>   
+                  </tr>
+                  
+              <%  
                 };
-                %>
- 
-            </table>
-        </div>
-        </div>
-  
-    <div class="col-md-6">
-        <h2 class="mx-auto table-info"> <%=  languageTwo.language  %>  </h2>
-        <div class="table-responsive"> 
-  
-    <table class="table table-striped custab">
-    
-        <tr>
-            <td><%=  languageTwo.language  %></td>
-            <th class="float-right">Name</th>
-            
-        </tr>
-        <tr>
-            
-            <td><%=  languageTwo.family  %></td>
-            <th class="float-right">Family</th>
-        </tr>
-        <tr>
-          
-          <td><%=  languageTwo.iso693  %></td>
-          <th class="float-right">ISO</th>
-        </tr>
-        <tr>
-          
-          <td><%=  languageTwo.region  %></td>
-          <th class="float-right">Region</th>
-        </tr>
-        <tr>
-          
-          <td><%=  languageTwo.status  %></td>
-          <th class="float-right">Status</th>
-        </tr>
-        <tr>
-          
-          <td><%=  languageTwo.speakers  %></td>
-          <th class="float-right">Speakers</th>
-        </tr> 
-        <tr>
-          
-          <td><%=  languageTwo.description  %></td>
-          <th class="float-right">Description</th>
-        </tr> 
-
-        <%  
+              %>
+              
         
-        for (const word in languageTwo.words) {
-            
-        %>
+          </table>
+      </div>
+      </div>
 
-            <tr>
-                
-                <td><%=  languageTwo.words[word]  %></td>
-                <th class="float-right"><%=  word  %></th>   
-            </tr>
-            
-         <%  
-          };
-         %>
-         
-  
-    </table>
-</div>
-</div>
+              
+
+        </div>
+
+    </div>
 
         
-
-  </div>
-
-</div>
-
-    
     <%- include('common/footer') -%>
   </body>
 </html>
