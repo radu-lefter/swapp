@@ -34,13 +34,14 @@
           <div class="col-">
             <form method="POST" action="/create-language">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Name*</label>
                 <input
                   type="text"
                   class="form-control"
                   id="name"
                   name="language"
                   placeholder="Enter language name"
+                  required
                 />
 
                 <% if (errors['language']) { %>

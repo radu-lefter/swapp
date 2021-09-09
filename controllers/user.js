@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
   exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-        if (!user) {
+        if (!user || req.body.email === "" || req.body.password === "") {
             res.render('login-user', { errors: { email: { message: 'Email or password does not match' } } })
             return;
         }

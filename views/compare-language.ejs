@@ -61,116 +61,124 @@
               </div>
             
               <div class="col-md-6">
-                  <h2 class="mx-auto table-info"> <%=  languageOne.language  %>  </h2>
+                  <h2 class="mx-auto table-info"> <%-  languageOne ? languageOne.language : "Language not found"  %>  </h2>
                   <div class="table-responsive"> 
         
                   <table class="table table-striped custab">
                   
                       <tr>
                           <th>Name</th>
-                          <td class="float-right"><%=  languageOne.language  %></td>
+                          <td class="float-right"><%-  languageOne ? languageOne.language : "Language not found"  %></td>
                       </tr>
                       <tr>
                           <th>Family</th>
-                          <td class="float-right"><%=  languageOne.family  %></td>
+                          <td class="float-right"><%-  languageOne ? languageOne.family : "Language not found"  %></td>
                       </tr>
                       <tr>
                       <th>ISO</th>
-                      <td class="float-right"><%=  languageOne.iso693  %></td>
+                      <td class="float-right"><%-  languageOne ? languageOne.iso693 : "Language not found"  %></td>
                       </tr>
                       <tr>
                       <th>Region</th>
-                      <td class="float-right"><%=  languageOne.region  %></td>
+                      <td class="float-right"><%-  languageOne ? languageOne.region : "Language not found"  %></td>
                       </tr>
                       <tr>
                       <th>Status</th>
-                      <td class="float-right"><%=  languageOne.status  %></td>
+                      <td class="float-right"><%-  languageOne ? languageOne.status : "Language not found"  %></td>
                       </tr>
                       <tr>
                       <th>Speakers</th>
-                      <td class="float-right"><%=  languageOne.speakers  %></td>
+                      <td class="float-right"><%-  languageOne ? languageOne.speakers : "Language not found"  %></td>
                       </tr> 
                       <tr>
                       <th>Description</th>
-                      <td class="float-right"><%=  languageOne.description  %></td>
+                      <td class="float-right"><%-  languageOne ? languageOne.description : "Language not found"  %></td>
                       </tr> 
 
-                      <%  
-                      
-                      for (const word in languageOne.words) {
-                          
-                      %>
+                      <% if(languageOne){ %>
 
-                          <tr>
-                              <th><%=  word  %></th>
-                              <td class="float-right"><%=  languageOne.words[word]  %></td>   
-                          </tr>
-                          
-                      <%  
-                      };
-                      %>
+                        <% for (const word in languageOne.words) {
+                            
+                        %>
+          
+                            <tr>
+                                
+                                <td><%=  word  %></td>
+                                <th class="float-right"><%=  languageOne.words[word]  %></th>   
+                            </tr>
+                            
+                        <%  
+                            };
+                         %>
+                        <% } else{ %>  
+                          <p>Language not found</p>
+                        <% } %>
+                        
       
                   </table>
               </div>
               </div>
         
           <div class="col-md-6">
-              <h2 class="mx-auto table-info"> <%=  languageTwo.language  %>  </h2>
+              <h2 class="mx-auto table-info"> <%-  languageTwo ? languageTwo.language : "Language not found"  %>  </h2>
               <div class="table-responsive"> 
         
           <table class="table table-striped custab">
           
               <tr>
-                  <td><%=  languageTwo.language  %></td>
+                  <td><%-  languageTwo ? languageTwo.language : "Language not found"  %></td>
                   <th class="float-right">Name</th>
                   
               </tr>
               <tr>
                   
-                  <td><%=  languageTwo.family  %></td>
+                  <td><%-  languageTwo ? languageTwo.family : "Language not found"  %></td>
                   <th class="float-right">Family</th>
               </tr>
               <tr>
                 
-                <td><%=  languageTwo.iso693  %></td>
+                <td><%-  languageTwo ? languageTwo.iso693 : "Language not found"  %></td>
                 <th class="float-right">ISO</th>
               </tr>
               <tr>
                 
-                <td><%=  languageTwo.region  %></td>
+                <td><%-  languageTwo ? languageTwo.region : "Language not found"  %></td>
                 <th class="float-right">Region</th>
               </tr>
               <tr>
                 
-                <td><%=  languageTwo.status  %></td>
+                <td><%-  languageTwo ? languageTwo.status : "Language not found"  %></td>
                 <th class="float-right">Status</th>
               </tr>
               <tr>
                 
-                <td><%=  languageTwo.speakers  %></td>
+                <td><%-  languageTwo ? languageTwo.speakers : "Language not found"  %></td>
                 <th class="float-right">Speakers</th>
               </tr> 
               <tr>
                 
-                <td><%=  languageTwo.description  %></td>
+                <td><%-  languageTwo ? languageTwo.description : "Language not found"  %></td>
                 <th class="float-right">Description</th>
               </tr> 
 
-              <%  
-              
-              for (const word in languageTwo.words) {
+              <% if(languageTwo){ %>
+
+              <% for (const word in languageTwo.words) {
                   
               %>
 
                   <tr>
                       
-                      <td><%=  languageTwo.words[word]  %></td>
-                      <th class="float-right"><%=  word  %></th>   
+                      <th><%=  languageTwo.words[word]  %></th>
+                      <td class="float-right"><%=  word  %></td>   
                   </tr>
                   
               <%  
-                };
-              %>
+                  };
+               %>
+              <% } else{ %>  
+                <p>Language not found</p>
+              <% } %>
               
         
           </table>
